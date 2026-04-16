@@ -4,6 +4,8 @@ use std::path::PathBuf;
 mod extensions;
 mod validator;
 
+mod windows;
+
 #[derive(Parser)]
 #[command(
     name = "extexec",
@@ -31,14 +33,17 @@ fn main() {
     println!("--- extexec initialization ---");
     if let Err(e) = validator::validate_executable(&cli.executable) {
         eprintln!("Validation Error: {}", e);
-        std::process::exit(1);
+        //std::process::exit(1);
     }
     
     if cli.dry_run {
         println!("[DRY RUN] Would associate extension '{}' with: {:?}", cli.extension, cli.executable);
     } else {
         println!("Attempting to associate '{}' with: {:?}", cli.extension, cli.executable);
-            
-        todo!("Now I have to implement platform-specific association logics, starting from windows.");
+
+        if let Err(e) = windows::associate_extension(&cli.extension, cli.executable) {
+            eprintln!("Association Error: {}", e);
+            //std::process::exit(1);
+        }
     }
 }
