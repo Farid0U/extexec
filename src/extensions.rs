@@ -16,8 +16,8 @@ impl Extension {
         Extension(cleaned)
     }
 
-    pub fn slug(&self) -> String {
-        self.0.trim_start_matches('.').to_string()
+    pub fn slug(&self) -> &str {
+        self.0.trim_start_matches('.')
     }
 }
 
