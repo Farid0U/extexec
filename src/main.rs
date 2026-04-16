@@ -2,7 +2,6 @@ use clap::Parser;
 use std::path::PathBuf;
 
 mod extensions;
-use extensions::Extension;
 mod validator;
 
 #[derive(Parser)]
@@ -15,7 +14,7 @@ mod validator;
 struct Cli {
     /// The file extension to associate (e.g.: .txt, .md, ...)
     #[arg(short = 'e', long)]
-    extension: Extension,
+    extension: extensions::Extension,
 
     /// The path to the executable to use
     #[arg(short = 'x', long, value_name = "FILE")]
