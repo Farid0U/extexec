@@ -1,6 +1,9 @@
 use clap::Parser;
 use std::path::PathBuf;
 
+mod parser;
+use parser::Extension;
+
 #[derive(Parser)]
 #[command(
     name = "extexec",
