@@ -15,14 +15,6 @@ impl Extension {
         
         Extension(cleaned)
     }
-
-    pub fn as_str(&self) -> &str {
-        &self.0
-    }
-
-    pub fn slug(&self) -> String {
-        self.0.replace('.', "")
-    }
 }
 
 impl fmt::Display for Extension {
