@@ -37,8 +37,8 @@ mod tests {
 
     #[test]
     fn test_extension_normalization() {
-        assert_eq!(Extension::new("txt").as_str(), ".txt");
-        assert_eq!(Extension::new(".TXT").as_str(), ".txt");
-        assert_eq!(Extension::new("  .Png  ").as_str(), ".png");
+        assert_eq!(Extension::new("txt").to_string(), ".txt");
+        assert_eq!(Extension::new(".TXT").to_string(), ".txt");
+        assert_eq!(Extension::new("  .Png  ").to_string(), ".png");
     }
 }
