@@ -3,6 +3,7 @@ use std::path::PathBuf;
 
 mod extensions;
 use extensions::Extension;
+mod validator;
 
 #[derive(Parser)]
 #[command(
@@ -29,7 +30,11 @@ fn main() {
     let cli = Cli::parse();
 
     println!("--- extexec initialization ---");
-
+    if let Err(e) = validator::validate_executable(&cli.executable) {
+        eprintln!("Validation Error: {}", e);
+        std::process::exit(1);
+    }
+    
     if cli.dry_run {
         println!("[DRY RUN] Would associate extension '{}' with: {:?}", cli.extension, cli.executable);
     } else {
