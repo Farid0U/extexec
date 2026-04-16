@@ -14,7 +14,7 @@ use parser::Extension;
 struct Cli {
     /// The file extension to associate (e.g.: .txt, .md, ...)
     #[arg(short = 'e', long)]
-    extension: String,
+    extension: Extension,
 
     /// The path to the executable to use
     #[arg(short = 'x', long, value_name = "FILE")]

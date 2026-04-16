@@ -1,5 +1,8 @@
 // Extension handling utilities
+use std::fmt;
+use std::str::FromStr;
 
+#[derive(Debug, Clone)]
 pub struct Extension(String);
 
 impl Extension {
@@ -19,6 +22,20 @@ impl Extension {
 
     pub fn slug(&self) -> String {
         self.0.replace('.', "")
+    }
+}
+
+impl fmt::Display for Extension {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.0)
+    }
+}
+
+impl FromStr for Extension {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(Extension::new(s))
     }
 }
 
