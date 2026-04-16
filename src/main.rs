@@ -4,6 +4,7 @@ use std::path::PathBuf;
 mod extensions;
 mod validator;
 
+#[cfg(target_os = "windows")]
 mod windows;
 
 #[derive(Parser)]
@@ -41,6 +42,7 @@ fn main() {
     } else {
         println!("Attempting to associate '{}' with: {:?}", cli.extension, cli.executable);
 
+        #[cfg(target_os = "windows")]
         if let Err(e) = windows::associate_extension(&cli.extension, cli.executable) {
             eprintln!("Association Error: {}", e);
             //std::process::exit(1);
